@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum - Página 4</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Dancing+Script:wght@700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .floating-photo {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            pointer-events: none;
+            z-index: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: #ad1457;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            perspective: 1000px;
+            aspect-ratio: 1/1.2;
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .photo-card.poem-trigger:hover .flip-inner { transform: rotateY(180deg); }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 4px;
+        }
+
+        .card-front img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-back {
+            background: #fff9c4;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            color: #444;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            border: 1px solid #f0e68c;
+        }
+
+        .nav-btns {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: #ad1457;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover { transform: scale(1.05); background: #880e4f; }
+        .btn-back { background: #ff8fab; }
+        .btn-back:hover { background: #ff4757; }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" src="cancion_pagina4.mp3" loop autoplay></audio>
+
+    <div class="container">
+        <h1>Capítulo 4: Todo lo que nos queda por vivir juntos ✨</h1>
+        
+        <div class="album-grid">
+            <div class="photo-card"><div class="flip-inner"><div class="card-front"><img src="foto19.JPEG" class="grid-img"></div></div></div>
+            <div class="photo-card"><div class="flip-inner"><div class="card-front"><img src="foto20.JPEG" class="grid-img"></div></div></div>
+            
+            <div class="photo-card poem-trigger">
+                <div class="flip-inner">
+                    <div class="card-front"><img src="foto21.JPEG" class="grid-img"></div>
+                    <div class="card-back"><p>Me pregunto mañana<br>cuánto tiempo habrá huido.<br>No me importa el reloj,<br>ni el siglo, ni el ruido.<br>Toda una vida es poco<br>si la mido en tus ojos.<br>Yo quiero el tiempo entero<br>para ser solo tuyo.</p></div>
+                </div>
+            </div>
+
+            <div class="photo-card"><div class="flip-inner"><div class="card-front"><img src="foto22.JPEG" class="grid-img"></div></div></div>
+            <div class="photo-card"><div class="flip-inner"><div class="card-front"><img src="foto23.JPEG" class="grid-img"></div></div></div>
+            <div class="photo-card"><div class="flip-inner"><div class="card-front"><img src="foto24.JPEG" class="grid-img"></div></div></div>
+        </div>
+
+        <div class="nav-btns">
+            <a href="pagina3.html" class="btn btn-back">⬅️ Volver</a>
+            <a href="pagina5.html" class="btn">Siguiente ➡️</a>
+        </div>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() { document.getElementById('bg-music').play(); }, { once: true });
+
+        function createFloatingPhoto() {
+            const images = document.querySelectorAll('.grid-img');
+            const randomImgSrc = images[Math.floor(Math.random() * images.length)].src;
+            const img = document.createElement('img');
+            img.src = randomImgSrc;
+            img.className = 'floating-photo';
+            img.style.left = Math.random() * 100 + 'vw';
+            img.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            document.body.appendChild(img);
+            setTimeout(() => { img.remove(); }, 10000);
+        }
+        setInterval(createFloatingPhoto, 800);
+    </script>
+</body>
+</html>

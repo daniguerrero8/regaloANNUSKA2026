@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Añchik 🎂</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Dancing+Script:wght@700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff99cc 50%, #ff66b3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+            color: #fff;
+            visibility: hidden; /* Oculto hasta poner la contraseña */
+        }
+        
+        /* --- NUEVO EFECTO: LLUVIA DE MINI-FOTOS --- */
+        .floating-photo {
+            position: absolute;
+            width: 50px; /* Tamaño mini */
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 2px solid rgba(255,255,255,0.8);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            pointer-events: none;
+            z-index: 0;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .cover-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        .cover-photo {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 8px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .cover-photo:hover { transform: rotate(0deg) scale(1.02); }
+
+        .btn-start {
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            background: white;
+            color: #ff4757;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            font-family: 'Nunito', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-start:hover { transform: scale(1.05); box-shadow: 0 12px 25px rgba(0,0,0,0.3); }
+    </style>
+</head>
+
+<script>
+    // Esto fuerza a que la música suene en cuanto ella haga un clic para ver una foto o mover el ratón
+    document.body.addEventListener('click', function() {
+        const audio = document.getElementById('bg-music');
+        if (audio.paused) {
+            audio.play();
+        }
+    }, { once: true }); // Solo se ejecuta la primera vez que hace clic
+</script>
+
+<body>
+    <script>
+    // ESTA ES TU NUEVA CONTRASEÑA
+    const PASS = '03/03/2002'; 
+    
+    let acceso = prompt("Introduce la fecha especial (DD/MM/AAAA) para abrir tu álbum:");
+    
+    // Comprobamos si lo que escribe coincide exactamente con la fecha
+    if (acceso === PASS) {
+        document.body.style.visibility = 'visible';
+    } else {
+        alert("¡Esa no es la fecha correcta! Inténtalo de nuevo ❤️");
+        window.location.reload();
+    }
+</script>
+
+    <audio id="bg-music" src="portada.mp3" loop autoplay></audio>
+    
+    <div class="cover-container">
+        <h1>Los 24 años de mi Añchikik 🎂</h1>
+        <p class="subtitle">Nuestro año zusamikos</p>
+        <img src="portada.JPEG" alt="Nuestra foto" class="cover-photo">
+        <br>
+        <a href="pagina1.html" class="btn-start" onclick="document.getElementById('bg-music').play()">Abrir el Álbum ✨</a>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() { document.getElementById('bg-music').play(); }, { once: true });
+
+        // --- AQUÍ ES DONDE PONES EL MIX DE FOTOS PARA EL FONDO ---
+        // Escribe los nombres de las fotos que quieres que "lluevan" en la portada.
+        // No hace falta ponerlas todas, elige unas 10-15 variadas.
+        const albumMix = [
+            'foto1.JPEG', 'foto5.JPEG', 'foto12.JPEG', 'foto18.JPEG', 
+            'foto22.JPEG', 'foto30.jpg', 'foto35.JPEG', 'foto41.JPEG',
+            'foto4.JPEG', 'foto12.JPEG', 'foto16.JPEG', 'foto23.JPEG', 'foto26.JPEG', 'foto34.JPEG', 'foto42.JPEG', 'foto44.JPEG' 
+        ];
+
+        function createFloatingPhoto() {
+            if (albumMix.length === 0) return; // Por si la lista está vacía
+
+            const img = document.createElement('img');
+            // Elige una foto al azar de la lista que has puesto arriba
+            img.src = albumMix[Math.floor(Math.random() * albumMix.length)];
+            img.className = 'floating-photo';
+            
+            img.style.left = Math.random() * 100 + 'vw';
+            img.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            img.style.animationDelay = Math.random() * 2 + 's'; // Un poco de retraso para que no caigan todas a la vez
+            
+            document.body.appendChild(img);
+            setTimeout(() => { img.remove(); }, 10000);
+        }
+        
+        // Crea una foto flotante cada 600ms
+        setInterval(createFloatingPhoto, 600);
+    </script>
+</body>
+</html>
